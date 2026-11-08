@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Defect Tracker Tool</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div>
+          <h1>Defect Tracker Tool</h1>
+          <p class="lede">
+            Capture a defect, then click Create to export it to an Excel workbook.
+          </p>
+        </div>
+      </header>
+
+      <section class="card">
+        <div id="banner" class="banner" role="status"></div>
+        <form id="defect-form">
+          <h2 class="section-title">Identity</h2>
+          <div class="grid">
+            <div class="field">
+              <label for="defectId">Defect ID <span class="req">*</span></label>
+              <input id="defectId" name="defectId" required />
+            </div>
+            <div class="field">
+              <label for="assetTag">Asset Tag</label>
+              <input id="assetTag" name="assetTag" />
+            </div>
+            <div class="field">
+              <label for="environment">Environment</label>
+              <select id="environment" name="environment">
+                <option>Dev</option>
+                <option selected>QA</option>
+                <option>UAT</option>
+                <option>Staging</option>
+                <option>Prod</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="status">Status</label>
+              <select id="status" name="status">
+                <option selected>New</option>
+                <option>Open</option>
+                <option>In Progress</option>
+                <option>Fixed</option>
+                <option>Rejected</option>
+                <option>Closed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="severity">Severity</label>
+              <select id="severity" name="severity">
+                <option>Critical</option>
+                <option>High</option>
+                <option selected>Medium</option>
+                <option>Low</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option>P1</option>
+                <option>P2</option>
+                <option selected>P3</option>
+                <option>P4</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="storyId">Story ID</label>
+              <input id="storyId" name="storyId" />
+            </div>
+            <div class="field">
+              <label for="release">Release</label>
+              <input id="release" name="release" />
+            </div>
+          </div>
+
+          <h2 class="section-title">Details</h2>
+          <div class="grid">
+            <div class="field full">
+              <label for="summary">Summary <span class="req">*</span></label>
+              <input id="summary" name="summary" required maxlength="200" />
+            </div>
+            <div class="field full">
+              <label for="description">Description</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="field full">
+              <label for="stepsToReproduce">Steps to Reproduce</label>
+              <textarea id="stepsToReproduce" name="stepsToReproduce"></textarea>
+            </div>
+            <div class="field">
+              <label for="expectedResult">Expected Result</label>
+              <textarea id="expectedResult" name="expectedResult"></textarea>
+            </div>
+            <div class="field">
+              <label for="actualResult">Actual Result</label>
+              <textarea id="actualResult" name="actualResult"></textarea>
+            </div>
+            <div class="field full">
+              <label for="investigationPerformed">Investigation Performed</label>
+              <textarea id="investigationPerformed" name="investigationPerformed"></textarea>
+            </div>
+            <div class="field full">
+              <label for="evidence">Evidence</label>
+              <textarea id="evidence" name="evidence" placeholder="Links, file names, or notes"></textarea>
+            </div>
+            <div class="field full">
+              <label for="businessImpact">Business Impact</label>
+              <textarea id="businessImpact" name="businessImpact"></textarea>
+            </div>
+            <div class="field full">
+              <label for="comments">Comments</label>
+              <textarea id="comments" name="comments"></textarea>
+            </div>
+          </div>
+
+          <h2 class="section-title">Ownership</h2>
+          <div class="grid">
+            <div class="field">
+              <label for="poc">POC</label>
+              <input id="poc" name="poc" />
+            </div>
+            <div class="field">
+              <label for="createdBy">Created By <span class="req">*</span></label>
+              <input id="createdBy" name="createdBy" required />
+            </div>
+            <div class="field">
+              <label for="createdDate">Created Date</label>
+              <input id="createdDate" name="createdDate" type="date" />
+            </div>
+            <div class="field">
+              <label for="assignedTo">Assigned To</label>
+              <input id="assignedTo" name="assignedTo" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" type="submit">Create</button>
+            <button class="secondary" type="button" id="reset-form">Clear form</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card log">
+        <h2>Created this session</h2>
+        <p id="empty-log" class="empty">No defects exported yet.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Defect ID</th>
+              <th>Summary</th>
+              <th>Severity</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Assigned To</th>
+            </tr>
+          </thead>
+          <tbody id="log-body"></tbody>
+        </table>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
